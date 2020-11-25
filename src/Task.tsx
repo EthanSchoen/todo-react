@@ -1,10 +1,12 @@
 import React from 'react';
+import TaskMenu from './TaskMenu';
 
 const Task = () => {
   return (
-    <li>
+    <li className="task">
+      <input className="complete" type="checkbox" />
       <div> Task </div>
-      <input type="checkbox" />
+      <TaskMenu />
     </li>
   );
 };

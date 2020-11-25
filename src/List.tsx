@@ -4,9 +4,9 @@ import Task from './Task';
 const List = () => {
   return (
     <ul>
-      <li>
-        <Task />
-      </li>
+      <Task />
+      <Task />
+      <Task />
     </ul>
   );
 };
