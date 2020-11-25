@@ -1,10 +1,11 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 const NewTask = () => {
   return (
     <div id="newtask">
       <input placeholder="input" type="text" />
-      <button type="button">Add</button>
+      <Button>Add</Button>
     </div>
   );
 };
