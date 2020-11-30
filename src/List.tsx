@@ -1,12 +1,17 @@
 import React from 'react';
-import Task from './Task';
+import TaskElement from './TaskElement';
+import { Task } from './types';
 
-const List = () => {
+type Props = {
+  tasks: Task[];
+};
+
+const List = (props: Props) => {
   return (
     <ul>
-      <Task />
-      <Task />
-      <Task />
+      {props.tasks.map((t) => (
+        <TaskElement key={t.id} task={t} />
+      ))}
     </ul>
   );
 };

@@ -1,14 +1,19 @@
 import React from 'react';
 import TaskMenu from './TaskMenu';
+import { Task } from './types';
 
-const Task = () => {
+type Props = {
+  task: Task;
+};
+
+const TaskElement = (props: Props) => {
   return (
     <li className="task">
       <input className="complete" type="checkbox" />
-      <div> Task </div>
+      <div>{props.task.taskString}</div>
       <TaskMenu />
     </li>
   );
 };
 
-export default Task;
+export default TaskElement;
