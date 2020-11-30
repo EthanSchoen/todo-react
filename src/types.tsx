@@ -4,3 +4,8 @@ export interface Task {
   complete: boolean;
   taskString: string;
 }
+
+export interface TaskList {
+  id: string;
+  listName: string;
+}

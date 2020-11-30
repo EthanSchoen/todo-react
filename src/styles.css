@@ -12,6 +12,10 @@ h1 {
   text-shadow: 2px 2px var(--hightlight-3);
 }
 
+.mainHeader {
+  cursor: pointer;
+}
+
 body {
   font: caption;
   margin: auto;
@@ -102,6 +106,9 @@ li .editTask:focus {
   box-shadow: none;
   border-color: var(--hightlight-3);
   border-radius: 0.25em;
+}
+li .listName {
+  cursor: pointer;
 }
 
 .menu {
