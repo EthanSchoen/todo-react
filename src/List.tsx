@@ -4,13 +4,27 @@ import { Task } from './types';
 
 type Props = {
   tasks: Task[];
+  toggle: Function;
+  remove: Function;
+  edit: Function;
 };
 
-const List = (props: Props) => {
+const List = ({
+  tasks: taskArray,
+  toggle: toggleTask,
+  remove: removeTask,
+  edit: editTask,
+}: Props) => {
   return (
     <ul>
-      {props.tasks.map((t) => (
-        <TaskElement key={t.id} task={t} />
+      {taskArray.map((t) => (
+        <TaskElement
+          key={t.id}
+          task={t}
+          toggle={toggleTask}
+          remove={removeTask}
+          edit={editTask}
+        />
       ))}
     </ul>
   );

@@ -37,10 +37,18 @@ body {
 #newtask input {
   background-color: var(--main-bg-color);
   border-color: var(--hightlight-2);
+  border-style: solid;
+  border-radius: 0.25em;
   color: var(--main-txt-color);
   font-size: large;
   flex-grow: 1;
   margin-right: 0.25em;
+}
+
+#newtask input:focus {
+  outline-style: none;
+  box-shadow: none;
+  border-color: var(--hightlight-2);
 }
 
 hr {
@@ -56,6 +64,7 @@ ul {
 li {
   background-color: var(--main-bg-color);
   box-shadow: 0px 0px 0px 2px var(--hightlight-2) inset;
+  border-radius: 0.25em;
   margin-top: 0.25em;
   width: 100%;
   height: 40px;
@@ -64,14 +73,35 @@ li {
 }
 
 li .complete {
-  justify-content: flex-start;
-  margin: 0 0.25em 0 0.5em;
+  flex-grow: 0;
+  margin: 0 0.2em 0 0.5em;
 }
 
 li div {
   flex-grow: 1;
   justify-content: flex-start;
   font-size: larger;
+  margin-left: 0.2em;
+}
+
+li .editTask {
+  background-color: #faf0f0;
+  border-color: var(--hightlight-3);
+  border-radius: 0.25em;
+  color: var(--main-txt-color);
+  font-size: large;
+  flex-grow: 1;
+  border-style: solid;
+  justify-content: flex-start;
+  font-size: larger;
+  margin-right: 0.25em;
+}
+
+li .editTask:focus {
+  outline-style: none;
+  box-shadow: none;
+  border-color: var(--hightlight-3);
+  border-radius: 0.25em;
 }
 
 .menu {
@@ -80,4 +110,25 @@ li div {
   width: 20px;
   justify-content: flex-end;
   margin-right: 0.25em;
+}
+
+.strike {
+  color: #888;
+  text-decoration: line-through;
+  text-decoration-color: #555;
+}
+
+.dropdown-menu {
+  background-color: var(--main-bg-color);
+  border-color: #840032;
+  border-width: 2px;
+}
+
+.dropdown-item:hover {
+  background-color: #d5caca;
+  cursor: pointer;
+}
+
+.dropdown-item:active {
+  background-color: var(--hightlight-1);
 }
