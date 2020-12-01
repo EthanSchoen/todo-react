@@ -58,7 +58,6 @@ const taskReducer = (state: Task[], action: TaskAction) => {
 };
 
 const listReducer = (state: TaskList[], action: ListAction) => {
-  console.log(action);
   if (action.type === LIST_REMOVE) {
     return state.filter((list) => {
       if (list.id !== action.payload.id) return list;
@@ -198,7 +197,7 @@ const Application = () => {
           </div>
         )
       ) : (
-        <div>
+        <div className="loginButton">
           <Button onClick={(_) => setLoggedin(true)}>
             Click Here to Log In
           </Button>

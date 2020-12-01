@@ -24,6 +24,11 @@ body {
   color: var(--main-txt-color);
 }
 
+.loginButton {
+  margin: 5em auto;
+  width: 10.5em;
+}
+
 #newtask {
   height: 38px;
   display: flex;
