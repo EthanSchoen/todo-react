@@ -10,7 +10,7 @@ const NewTask = ({ onSubmit: addTask }: Props) => {
   const [task, setTask] = useState('');
   const handleChange = (event: FormEvent) => {
     event.preventDefault();
-    addTask(task);
+    if (task.trim() !== '') addTask(task);
     setTask('');
   };
   return (

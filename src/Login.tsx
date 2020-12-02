@@ -5,6 +5,8 @@ type Props = {
   setUser: Function;
 };
 
+const users = ['Bob', 'Billy', 'Bobbie', 'Bert'];
+
 const Login = ({ setUser: setUserId }: Props) => {
   return (
     <div className="loginDropdown">
@@ -12,15 +14,15 @@ const Login = ({ setUser: setUserId }: Props) => {
         Select User
       </Button>
       <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a className="dropdown-item" onClick={() => setUserId('1')}>
-          user1
-        </a>
-        <a className="dropdown-item" onClick={() => setUserId('2')}>
-          user2
-        </a>
-        <a className="dropdown-item" onClick={() => setUserId('3')}>
-          user3
-        </a>
+        {users.map((user, index) => (
+          <a
+            className="dropdown-item"
+            key={index}
+            onClick={() => setUserId(index.toString())}
+          >
+            {user}
+          </a>
+        ))}
       </div>
     </div>
   );

@@ -10,8 +10,13 @@ export const LIST_EDIT = 'LIST_EDIT';
 type ListAction = {
   type: string;
   payload: {
+    userId: string;
     listId?: string;
     list?: TaskList;
+    newlist?: {
+      name: string;
+      user: string;
+    };
   };
 };
 
@@ -31,39 +36,53 @@ export default {
         return list;
       });
     }
+
+    fetch('http://localhost:8080/lists?user=' + action.payload.userId, {
+      method: 'get',
+      mode: 'cors',
+    })
+      .then((d) => d.text())
+      .then((j) => {
+        console.log(j);
+      });
     return state;
   },
   addListFactory(listDispatch: React.Dispatch<ListAction>) {
     return useCallback(
       (newlist: string, userId: string) => {
         var new_list = {
-          listId: uuid(),
           name: newlist,
           user: userId,
         };
+        console.log(JSON.stringify(new_list));
         fetch('http://localhost:8080/addList', {
           method: 'post',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify(new_list),
-        })
-          .then((d) => d.text())
-          .then((j) => {
-            listDispatch({
-              type: LIST_ADD,
-              payload: {
-                list: new_list,
-              },
-            });
+        }).then((d) => {
+          console.log(d.status);
+          listDispatch({
+            type: LIST_ADD,
+            payload: {
+              userId: userId,
+              newlist: new_list,
+            },
           });
+        });
       },
       [listDispatch]
     );
   },
   removeListFactory(listDispatch: React.Dispatch<ListAction>) {
     return useCallback(
-      (id: string) => {
+      (id: string, userId: string) => {
         listDispatch({
           type: LIST_REMOVE,
           payload: {
+            userId: userId,
             listId: id,
           },
         });
@@ -73,10 +92,11 @@ export default {
   },
   editListFactory(listDispatch: React.Dispatch<ListAction>) {
     return useCallback(
-      (list: TaskList) => {
+      (list: TaskList, userId: string) => {
         listDispatch({
           type: LIST_EDIT,
           payload: {
+            userId: userId,
             list: list,
           },
         });

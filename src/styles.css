@@ -29,21 +29,33 @@ body {
   width: 6.8em;
 }
 
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  color: #002642 !important;
+  background-color: #e59500 !important;
+  border-color: #840032 !important;
+  box-shadow: 0 0 0 0.2rem #840032 !important;
+}
+
 #newtask {
-  height: 38px;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   margin-bottom: 0.5em;
 }
 
 #newtask button {
+  height: 2em;
   font-size: large;
+  text-align: center;
   background-color: var(--hightlight-3);
   border-color: var(--hightlight-3);
   color: var(--main-txt-color);
 }
 
 #newtask input {
+  height: 2.25em;
   background-color: var(--main-bg-color);
   border-color: var(--hightlight-2);
   border-style: solid;
