@@ -24,9 +24,9 @@ body {
   color: var(--main-txt-color);
 }
 
-.loginButton {
+.loginDropdown {
   margin: 5em auto;
-  width: 10.5em;
+  width: 6.8em;
 }
 
 #newtask {

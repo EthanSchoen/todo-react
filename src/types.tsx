@@ -1,11 +1,12 @@
 // types
 export interface Task {
-  id: string;
+  taskId: string;
+  task: string;
   complete: boolean;
-  taskString: string;
 }
 
 export interface TaskList {
-  id: string;
-  listName: string;
+  listId: string;
+  name: string;
+  user: string;
 }

@@ -6,24 +6,24 @@ type Props = {
   onSubmit: Function;
 };
 
-const NewTask = ({ onSubmit: addTask }: Props) => {
-  const [task, setTask] = useState('');
+const NewList = ({ onSubmit: addList }: Props) => {
+  const [list, setList] = useState('');
   const handleChange = (event: FormEvent) => {
     event.preventDefault();
-    addTask(task);
-    setTask('');
+    addList(list);
+    setList('');
   };
   return (
     <form id="newtask" onSubmit={handleChange}>
       <input
-        placeholder=" Add a New Task"
+        placeholder=" Add a New List"
         type="text"
-        value={task}
-        onChange={(event) => setTask(event.target.value)}
+        value={list}
+        onChange={(event) => setList(event.target.value)}
       />
       <Button type="submit">Add</Button>
     </form>
   );
 };
 
-export default NewTask;
+export default NewList;

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/esm/Button';
 import { TaskList } from './types';
 
 type Props = {
@@ -16,10 +15,10 @@ const ListElement = ({
   edit: editList,
 }: Props) => {
   const [edit, setEdit] = useState(false);
-  const [editedList, setEditedList] = useState(taskList.listName);
+  const [editedList, setEditedList] = useState(taskList.name);
   const doneEditing = () => {
     editList({
-      id: taskList.id,
+      id: taskList.listId,
       listName: editedList,
     });
     setEdit(false);
@@ -31,7 +30,7 @@ const ListElement = ({
         <input
           className="editTask"
           type="text"
-          defaultValue={taskList.listName}
+          defaultValue={taskList.name}
           onChange={(e) => setEditedList(e.target.value)}
           onKeyDown={(e: React.KeyboardEvent) => {
             if (e.key === 'Enter') doneEditing();
@@ -41,9 +40,9 @@ const ListElement = ({
         // display task
         <div
           className="listName"
-          onClick={(_) => setCurrentList(taskList.listName)}
+          onClick={(_) => setCurrentList(taskList.name)}
         >
-          {taskList.listName}
+          {taskList.name}
         </div>
       )}
       <div className="menu">
@@ -69,7 +68,10 @@ const ListElement = ({
           ) : (
             ''
           )}
-          <a className="dropdown-item" onClick={() => removeList(taskList.id)}>
+          <a
+            className="dropdown-item"
+            onClick={() => removeList(taskList.listId)}
+          >
             Remove
           </a>
         </div>

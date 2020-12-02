@@ -15,10 +15,10 @@ const TaskElement = ({
   edit: editTask,
 }: Props) => {
   const [edit, setEdit] = useState(false);
-  const [editedTask, setEditedTask] = useState(taskObj.taskString);
+  const [editedTask, setEditedTask] = useState(taskObj.task);
   const doneEditing = () => {
     editTask({
-      id: taskObj.id,
+      id: taskObj.taskId,
       complete: taskObj.complete,
       taskString: editedTask,
     });
@@ -30,14 +30,14 @@ const TaskElement = ({
         className="complete"
         type="checkbox"
         checked={taskObj.complete}
-        onChange={(_) => toggleTask(taskObj.id)}
+        onChange={(_) => toggleTask(taskObj.taskId)}
       />
       {edit ? (
         // edit task
         <input
           className="editTask"
           type="text"
-          defaultValue={taskObj.taskString}
+          defaultValue={taskObj.task}
           onChange={(e) => setEditedTask(e.target.value)}
           onKeyDown={(e: React.KeyboardEvent) => {
             if (e.key === 'Enter') doneEditing();
@@ -45,9 +45,7 @@ const TaskElement = ({
         />
       ) : (
         // display task
-        <div className={taskObj.complete ? 'strike' : ''}>
-          {taskObj.taskString}
-        </div>
+        <div className={taskObj.complete ? 'strike' : ''}>{taskObj.task}</div>
       )}
       <div className="menu">
         <input
@@ -72,7 +70,10 @@ const TaskElement = ({
           ) : (
             ''
           )}
-          <a className="dropdown-item" onClick={() => removeTask(taskObj.id)}>
+          <a
+            className="dropdown-item"
+            onClick={() => removeTask(taskObj.taskId)}
+          >
             Remove
           </a>
         </div>
