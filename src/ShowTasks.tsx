@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import TaskR from './api/TaskR';
 import NewTask from './NewTask';
 import TaskElement from './TaskElement';
-import { Task } from './types';
+import { Task, TaskList } from './types';
 
 type Props = {
-  tasks: Task[];
-  add: Function;
-  toggle: Function;
-  remove: Function;
-  edit: Function;
+  list: TaskList;
 };
 
-const ShowTasks = ({
-  tasks: tasks,
-  add: addTask,
-  toggle: toggleTask,
-  remove: removeTask,
-  edit: editTask,
-}: Props) => {
+const ShowTasks = ({ list: list }: Props) => {
+  const [tasks, setTasks] = useState([] as Task[]);
+
+  const addTask = TaskR.addTaskFactory(setTasks, list);
+  const toggleTask = TaskR.toggleTaskFactory(setTasks, list);
+  const removeTask = TaskR.removeTaskFactory(setTasks, list);
+  const editTask = TaskR.editTaskFactory(setTasks, list);
+  useEffect(() => {
+    TaskR.getTasks(setTasks, list);
+  }, []);
+
   return (
     <div>
       <NewTask onSubmit={addTask} />

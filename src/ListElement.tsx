@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserCode } from '.';
 import { TaskList } from './types';
 
 type Props = {
@@ -17,11 +18,15 @@ const ListElement = ({
   const [edit, setEdit] = useState(false);
   const [editedList, setEditedList] = useState(taskList.name);
   const doneEditing = () => {
-    editList({
-      id: taskList.listId,
-      listName: editedList,
-    });
-    setEdit(false);
+    editList(
+      {
+        listId: taskList.listId,
+        name: editedList,
+        user: taskList.user,
+      },
+      setEdit
+    );
+    // setEdit(false);
   };
   return (
     <li className="list">
@@ -38,10 +43,7 @@ const ListElement = ({
         />
       ) : (
         // display task
-        <div
-          className="listName"
-          onClick={(_) => setCurrentList(taskList.name)}
-        >
+        <div className="listName" onClick={(_) => setCurrentList(taskList)}>
           {taskList.name}
         </div>
       )}
@@ -68,10 +70,7 @@ const ListElement = ({
           ) : (
             ''
           )}
-          <a
-            className="dropdown-item"
-            onClick={() => removeList(taskList.listId)}
-          >
+          <a className="dropdown-item" onClick={() => removeList(taskList)}>
             Remove
           </a>
         </div>

@@ -8,11 +8,9 @@ type Props = {
 
 const NewList = ({ onSubmit: addList }: Props) => {
   const [list, setList] = useState('');
-  const user = useContext(UserCode);
   const handleChange = (event: FormEvent) => {
     event.preventDefault();
-    console.log(list);
-    if (list.trim() !== '') addList(list, user);
+    if (list.trim() !== '') addList(list);
     setList('');
   };
   return (

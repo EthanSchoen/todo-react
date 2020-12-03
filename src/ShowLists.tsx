@@ -1,48 +1,24 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { UserCode } from '.';
 import ListElement from './ListElement';
 import NewList from './NewList';
-import ListR from './reducers/ListR';
+import ListR from './api/ListR';
 import { TaskList } from './types';
 
 type Props = {
   set: Function;
 };
 
-// function addList(newlist: String, userId: String) {
-//   fetch('http://localhost:8080/addList', {
-//     method: 'post',
-//     mode: 'cors',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       name: newlist,
-//       user: userId,
-//     }),
-//   }).then((d) => {
-//     console.log(d.status);
-//   });
-// }
-
 const ShowLists = ({ set: setCurrentList }: Props) => {
   const userId = useContext(UserCode);
-  const [lists, listDispatch] = useReducer(ListR.reducer, []);
+  const [lists, setLists] = useState([] as TaskList[]);
 
-  const addList = ListR.addListFactory(listDispatch);
-  const removeList = ListR.removeListFactory(listDispatch);
-  const editList = ListR.editListFactory(listDispatch);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:8080/lists?user=' + userId, {
-  //     method: 'get',
-  //     mode: 'cors',
-  //   })
-  //     .then((d) => d.text())
-  //     .then((j) => {
-  //       console.log(j);
-  //     });
-  // });
+  const addList = ListR.addListFactory(setLists, userId);
+  const removeList = ListR.removeListFactory(setLists);
+  const editList = ListR.editListFactory(setLists);
+  useEffect(() => {
+    ListR.getLists(setLists, userId);
+  }, []);
 
   return (
     <div>

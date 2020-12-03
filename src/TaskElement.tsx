@@ -18,9 +18,9 @@ const TaskElement = ({
   const [editedTask, setEditedTask] = useState(taskObj.task);
   const doneEditing = () => {
     editTask({
-      id: taskObj.taskId,
+      taskId: taskObj.taskId,
       complete: taskObj.complete,
-      taskString: editedTask,
+      task: editedTask,
     });
     setEdit(false);
   };
@@ -30,7 +30,7 @@ const TaskElement = ({
         className="complete"
         type="checkbox"
         checked={taskObj.complete}
-        onChange={(_) => toggleTask(taskObj.taskId)}
+        onChange={(_) => toggleTask(taskObj)}
       />
       {edit ? (
         // edit task
@@ -70,10 +70,7 @@ const TaskElement = ({
           ) : (
             ''
           )}
-          <a
-            className="dropdown-item"
-            onClick={() => removeTask(taskObj.taskId)}
-          >
+          <a className="dropdown-item" onClick={() => removeTask(taskObj)}>
             Remove
           </a>
         </div>
